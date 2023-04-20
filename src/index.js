@@ -20,6 +20,8 @@ export default {
       });
     }
 
+    let enableUDP = pathname.indexOf("udp=true") !== -1;
+
     let configUrl = Base64.decode(pathname.slice(3));
 
     let resp = await fetch(configUrl);
@@ -37,9 +39,13 @@ export default {
     let appendObj = yaml.load(template.append);
     configObj = Object.assign(configObj, appendObj);
 
-    // replace proxy names
+    // replace proxy names and force add udp if apply
     let proxyName = [];
     configObj["proxies"].forEach((proxyElem) => {
+      if (enableUDP) {
+        proxyElem["udp"] = true;
+      }
+
       proxyName.push(proxyElem["name"]);
     });
 

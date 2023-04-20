@@ -43,11 +43,11 @@ rules:
   - RULE-SET,applications,DIRECT
   - DOMAIN,clash.razord.top,DIRECT
   - DOMAIN,yacd.haishan.me,DIRECT
+  - DOMAIN-SUFFIX,bing.com,PROXY # Bing Chat
   - RULE-SET,private,DIRECT
   - RULE-SET,reject,🛑 广告拦截
   - RULE-SET,icloud,DIRECT
   - RULE-SET,apple,DIRECT
-  - RULE-SET,google,DIRECT
   - RULE-SET,tld-not-cn,PROXY
   - RULE-SET,gfw,PROXY
   - RULE-SET,greatfire,PROXY
@@ -78,12 +78,6 @@ rule-providers:
     behavior: domain
     url: _PROVIDER_PROXY|apple.txt
     path: ./ruleset/apple.yaml
-    interval: 86400
-  google:
-    type: http
-    behavior: domain
-    url: _PROVIDER_PROXY|google.txt
-    path: ./ruleset/google.yaml
     interval: 86400
   proxy:
     type: http
