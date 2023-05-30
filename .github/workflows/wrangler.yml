@@ -24,18 +24,13 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: "npm"
-      - run: |
-          cat << 'EOF' > wrangler.toml
-          name = "ext-clash-modifier"
-          main = "src/index.js"
-          compatibility_date = "2022-08-16"
-          EOF
       - run: npm install
       - name: Mask OUTPUT
-        run: echo "::add-mask::$OUTPUT"
+        run: echo "::add-mask::$MAGIC"
         env:
-          OUTPUT: ${{ secrets.OUTPUT }}
+          OUTPUT: ${{ secrets.MAGIC }}
       - name: Publish
         uses: cloudflare/wrangler-action@2.0.0
         with:
           apiToken: ${{ secrets.CF_API_TOKEN }}
+          command: "publish"
