@@ -9,7 +9,7 @@ export default {
 
     if (pathname.startsWith("/p/")) {
       let filename = pathname.slice(3)
-      return fetch(`https://ghproxy.com/https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/${filename}`)
+      return fetch(`https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/${filename}`)
     }
 
     if (!pathname.startsWith("/m/")) {
