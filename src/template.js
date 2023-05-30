@@ -40,14 +40,17 @@ proxy-groups:
       - 🔰 选择节点
 
 rules:
+  - DOMAIN,flash.sec.miui.com,REJECT # Disable MIUI anti fraud upload
+  - DOMAIN,gstatic.com,DIRECT
   - RULE-SET,applications,DIRECT
   - DOMAIN,clash.razord.top,DIRECT
   - DOMAIN,yacd.haishan.me,DIRECT
-  - DOMAIN-SUFFIX,bing.com,PROXY # Bing Chat
+  - DOMAIN-SUFFIX,bing.com,PROXY # For Bing Chat
   - RULE-SET,private,DIRECT
   - RULE-SET,reject,🛑 广告拦截
-  - RULE-SET,icloud,DIRECT
-  - RULE-SET,apple,DIRECT
+  - RULE-SET,icloud,PROXY
+  - RULE-SET,apple,PROXY
+  - RULE-SET,google,PROXY
   - RULE-SET,tld-not-cn,PROXY
   - RULE-SET,gfw,PROXY
   - RULE-SET,greatfire,PROXY
@@ -79,6 +82,12 @@ rule-providers:
     url: _PROVIDER_PROXY|apple.txt
     path: ./ruleset/apple.yaml
     interval: 86400
+  google:
+    type: http
+    behavior: domain
+    url: _PROVIDER_PROXY|google.txt
+    path: ./ruleset/google.yaml
+    interval: 86400  
   proxy:
     type: http
     behavior: domain

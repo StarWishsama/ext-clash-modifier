@@ -1,0 +1,41 @@
+name: Wrangler
+
+on:
+  push:
+    paths:
+      - '**.js'
+      - '**.toml'
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: Wrangler
+    strategy:
+      matrix:
+        node-version: [18.x]
+
+    name: Deploy
+    steps:
+      - uses: actions/checkout@v3
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: "npm"
+      - run: |
+          cat << 'EOF' > wrangler.toml
+          name = "ext-clash-modifier"
+          main = "src/index.js"
+          compatibility_date = "2022-08-16"
+          EOF
+      - run: npm install
+      - name: Mask OUTPUT
+        run: echo "::add-mask::$OUTPUT"
+        env:
+          OUTPUT: ${{ secrets.OUTPUT }}
+      - name: Publish
+        uses: cloudflare/wrangler-action@2.0.0
+        with:
+          apiToken: ${{ secrets.CF_API_TOKEN }}

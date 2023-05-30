@@ -41,12 +41,12 @@ export default {
 
     // replace proxy names and force add udp if apply
     let proxyName = [];
-    configObj["proxies"].forEach((proxyElem) => {
+    Object.keys(configObj["proxies"]).forEach(index => {
       if (enableUDP) {
-        proxyElem["udp"] = true;
+        configObj["proxies"][index]["udp"] = true;
       }
 
-      proxyName.push(proxyElem["name"]);
+      proxyName.push(configObj["proxies"][index]["name"]);
     });
 
     configObj["proxy-groups"].forEach((_, index) => {
