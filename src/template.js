@@ -42,12 +42,16 @@ proxy-groups:
       - DIRECT               
 
 rules:
+  # bypass BakaXL  
+  - PROCESS-NAME,BakaXL_Public_Ver_3.1.1.1.exe,DIRECT
+  # bypass Torrent
+  - PROCESS-NAME,qbittorrent.exe,DIRECT
+  
   - DOMAIN,flash.sec.miui.com,REJECT # Disable MIUI anti fraud upload
-  - DOMAIN,gstatic.com,DIRECT
-  - RULE-SET,applications,DIRECT
   - DOMAIN,clash.razord.top,DIRECT
   - DOMAIN,yacd.haishan.me,DIRECT
-  - DOMAIN-SUFFIX,bing.com,PROXY # For Bing Chat
+  # Force Proxy Bing Chat
+  - DOMAIN-SUFFIX,bing.com,PROXY
   
     # Local Area Network
   - IP-CIDR,192.168.0.0/16,DIRECT
