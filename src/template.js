@@ -51,7 +51,7 @@ rules:
   - DOMAIN,clash.razord.top,DIRECT
   - DOMAIN,yacd.haishan.me,DIRECT
   # Force Proxy Bing Chat
-  - DOMAIN-SUFFIX,bing.com,PROXY
+  - DOMAIN-SUFFIX,bing.com,'🌐 国外流量'
   
     # Local Area Network
   - IP-CIDR,192.168.0.0/16,DIRECT
