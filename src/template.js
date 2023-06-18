@@ -17,25 +17,25 @@ proxy-groups:
   - name: 🎬 国际流媒体
     type: select
     interval: 300
-    proxies: [DIRECT, '🌐 国外流量', _PROXY_NAME]
+    proxies: [DIRECT, '🌐 国外流量']
   - name: '🎬 大陆流媒体国际版'
     type: select
-    proxies: [DIRECT, '🌐 国外流量', _PROXY_NAME]
+    proxies: [DIRECT, '🌐 国外流量']
   - name: '🎮 Steam'
     type: select
-    proxies: [DIRECT, '🌐 国外流量', _PROXY_NAME]  
+    proxies: [DIRECT, '🌐 国外流量']  
   - name: '🌐 国际网站'
     type: select  
-    proxies: [DIRECT, '🌐 国外流量', _PROXY_NAME]  
+    proxies: [DIRECT, '🌐 国外流量']  
   - name: '🏠 大陆流量'
     type: select 
-    proxies: [DIRECT, '🌐 国外流量', _PROXY_NAME]  
+    proxies: [DIRECT, '🌐 国外流量']  
   - name: '🎬 大陆流媒体'
     type: select 
-    proxies: [DIRECT, '🏠 大陆流量', _PROXY_NAME]  
+    proxies: [DIRECT, '🏠 大陆流量']  
   - name: '🏠 大陆网站'
     type: select 
-    proxies: [DIRECT, '🏠 大陆流量', _PROXY_NAME]   
+    proxies: [DIRECT, '🏠 大陆流量']   
   - name: '➡️ 直接连接'
     type: select
     proxies:
