@@ -9,7 +9,7 @@ proxy-groups:
   - name: '🌐 国外流量'
     type: select
     proxies: [DIRECT, _PROXY_NAME]
-    name: '🚥 其他流量'
+  - name: '🚥 其他流量'
     type: select
     proxies:
       - '🌐 国外流量'
