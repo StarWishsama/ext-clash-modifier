@@ -6,38 +6,40 @@ const remove = ["proxy-groups", "rules", "rule-providers"];
 // 在 Rule Provider 中的 URL 中，使用 `_PROVIDER_PROXY|` 指代规则文件代理 URL
 const append = `
 proxy-groups:
-  - name: 🔯 代理模式
-    type: select
-    proxies:
-      - 绕过大陆丨黑名单(GFWlist)
-      - 绕过大陆丨白名单(Whitelist)
-  - name: 🔰 选择节点
+  - name: '🌐 国外流量'
     type: select
     proxies: [DIRECT, _PROXY_NAME]
-  - name: 🛑 广告拦截
+    name: '🚥 其他流量'
     type: select
     proxies:
+      - '🌐 国外流量'
       - DIRECT
-      - REJECT
-      - PROXY
-  - name: 绕过大陆丨黑名单(GFWlist)
-    type: url-test
-    url: http://www.gstatic.com/generate_204
-    interval: 86400
+  - name: 🎬 国际流媒体
+    type: select
+    interval: 300
+    proxies: [DIRECT, '🌐 国外流量', _PROXY_NAME]
+  - name: '🎬 大陆流媒体国际版'
+    type: select
+    proxies: [DIRECT, '🌐 国外流量', _PROXY_NAME]
+  - name: '🎮 Steam'
+    type: select
+    proxies: [DIRECT, '🌐 国外流量', _PROXY_NAME]  
+  - name: '🌐 国际网站'
+    type: select  
+    proxies: [DIRECT, '🌐 国外流量', _PROXY_NAME]  
+  - name: '🏠 大陆流量'
+    type: select 
+    proxies: [DIRECT, '🌐 国外流量', _PROXY_NAME]  
+  - name: '🎬 大陆流媒体'
+    type: select 
+    proxies: [DIRECT, '🏠 大陆流量', _PROXY_NAME]  
+  - name: '🏠 大陆网站'
+    type: select 
+    proxies: [DIRECT, '🏠 大陆流量', _PROXY_NAME]   
+  - name: '➡️ 直接连接'
+    type: select
     proxies:
-      - DIRECT
-  - name: 绕过大陆丨白名单(Whitelist)
-    type: url-test
-    url: http://www.gstatic.com/generate_204
-    interval: 86400
-    proxies:
-      - PROXY
-  - name: PROXY
-    type: url-test
-    url: http://www.gstatic.com/generate_204
-    interval: 86400
-    proxies:
-      - 🔰 选择节点
+      - DIRECT               
 
 rules:
   - DOMAIN,flash.sec.miui.com,REJECT # Disable MIUI anti fraud upload
@@ -46,107 +48,94 @@ rules:
   - DOMAIN,clash.razord.top,DIRECT
   - DOMAIN,yacd.haishan.me,DIRECT
   - DOMAIN-SUFFIX,bing.com,PROXY # For Bing Chat
-  - RULE-SET,private,DIRECT
-  - RULE-SET,reject,🛑 广告拦截
-  - RULE-SET,icloud,PROXY
-  - RULE-SET,apple,PROXY
-  - RULE-SET,google,PROXY
-  - RULE-SET,tld-not-cn,PROXY
-  - RULE-SET,gfw,PROXY
-  - RULE-SET,greatfire,PROXY
-  - RULE-SET,telegramcidr,PROXY
-  - RULE-SET,lancidr,DIRECT
-  - RULE-SET,cncidr,DIRECT
-  - GEOIP,,DIRECT
-  - GEOIP,CN,DIRECT
-  - RULE-SET,direct,DIRECT
-  - RULE-SET,proxy,🔯 代理模式
-  - MATCH,🔯 代理模式
+  
+    # Local Area Network
+  - IP-CIDR,192.168.0.0/16,DIRECT
+  - IP-CIDR,10.0.0.0/8,DIRECT
+  - IP-CIDR,172.16.0.0/12,DIRECT
+  - IP-CIDR,127.0.0.0/8,DIRECT
+  - IP-CIDR,100.64.0.0/10,DIRECT
+  - IP-CIDR,224.0.0.0/4,DIRECT
+  - IP-CIDR,fe80::/10,DIRECT
+  
+  # Unbreak
+  - RULE-SET,Unbreak,DIRECT
+  
+  # (Streaming Media)
+  - RULE-SET,Streaming,🎬 国际流媒体
+
+  # (StreamingSE)
+  - RULE-SET,StreamingSE,🎬 大陆流媒体国际版
+
+  # (Steam)
+  - RULE-SET,Steam,🎮 Steam
+
+  # (DNS Cache Pollution) / (IP Blackhole) / (Region-Restricted Access Denied) / (Network Jitter)
+  - RULE-SET,Global,🌐 国际网站
+
+  # (StreamingCN)
+  - RULE-SET,StreamingCN,🎬 大陆流媒体
+
+  # China Area Network
+  - RULE-SET,China,🏠 大陆网站
+  - RULE-SET,ChinaIP,🏠 大陆流量
+  - MATCH,🚥 其他流量
 
 rule-providers:
-  reject:
-    type: http
-    behavior: domain
-    url: _PROVIDER_PROXY|reject.txt
-    path: ./ruleset/reject.yaml
-    interval: 86400
-  icloud:
-    type: http
-    behavior: domain
-    url: _PROVIDER_PROXY|icloud.txt
-    path: ./ruleset/icloud.yaml
-    interval: 86400
-  apple:
-    type: http
-    behavior: domain
-    url: _PROVIDER_PROXY|apple.txt
-    path: ./ruleset/apple.yaml
-    interval: 86400
-  google:
-    type: http
-    behavior: domain
-    url: _PROVIDER_PROXY|google.txt
-    path: ./ruleset/google.yaml
-    interval: 86400  
-  proxy:
-    type: http
-    behavior: domain
-    url: _PROVIDER_PROXY|proxy.txt
-    path: ./ruleset/proxy.yaml
-    interval: 86400
-  direct:
-    type: http
-    behavior: domain
-    url: _PROVIDER_PROXY|direct.txt
-    path: ./ruleset/direct.yaml
-    interval: 86400
-  private:
-    type: http
-    behavior: domain
-    url: _PROVIDER_PROXY|private.txt
-    path: ./ruleset/private.yaml
-    interval: 86400
-  gfw:
-    type: http
-    behavior: domain
-    url: _PROVIDER_PROXY|gfw.txt
-    path: ./ruleset/gfw.yaml
-    interval: 86400
-  greatfire:
-    type: http
-    behavior: domain
-    url: _PROVIDER_PROXY|greatfire.txt
-    path: ./ruleset/greatfire.yaml
-    interval: 86400
-  tld-not-cn:
-    type: http
-    behavior: domain
-    url: _PROVIDER_PROXY|tld-not-cn.txt
-    path: ./ruleset/tld-not-cn.yaml
-    interval: 86400
-  telegramcidr:
-    type: http
-    behavior: ipcidr
-    url: _PROVIDER_PROXY|telegramcidr.txt
-    path: ./ruleset/telegramcidr.yaml
-    interval: 86400
-  cncidr:
-    type: http
-    behavior: ipcidr
-    url: _PROVIDER_PROXY|cncidr.txt
-    path: ./ruleset/cncidr.yaml
-    interval: 86400
-  lancidr:
-    type: http
-    behavior: ipcidr
-    url: _PROVIDER_PROXY|lancidr.txt
-    path: ./ruleset/lancidr.yaml
-    interval: 86400
-  applications:
+  Unbreak:
     type: http
     behavior: classical
-    url: _PROVIDER_PROXY|applications.txt
-    path: ./ruleset/applications.yaml
+    path: ./RuleSet/Unbreak.yaml
+    url: https://ghproxy.com/https://raw.githubusercontent.com/DivineEngine/Profiles/master/Clash/RuleSet/Unbreak.yaml
+    interval: 86400
+
+  Streaming:
+    type: http
+    behavior: classical
+    path: ./RuleSet/StreamingMedia/Streaming.yaml
+    url: https://ghproxy.com/https://raw.githubusercontent.com/DivineEngine/Profiles/master/Clash/RuleSet/StreamingMedia/Streaming.yaml
+    interval: 86400
+
+  StreamingSE:
+    type: http
+    behavior: classical
+    path: ./RuleSet/StreamingMedia/StreamingSE.yaml
+    url: https://ghproxy.com/https://raw.githubusercontent.com/DivineEngine/Profiles/master/Clash/RuleSet/StreamingMedia/StreamingSE.yaml
+    interval: 86400
+
+  StreamingCN:
+    type: http
+    behavior: classical
+    path: ./RuleSet/StreamingMedia/StreamingCN.yaml
+    url: https://ghproxy.com/https://raw.githubusercontent.com/DivineEngine/Profiles/master/Clash/RuleSet/StreamingMedia/StreamingCN.yaml
+    interval: 86400
+
+  Steam:
+    type: http
+    behavior: classical
+    path: ./RuleSet/Extra/Game/Steam.yaml
+    url: https://ghproxy.com/https://raw.githubusercontent.com/DivineEngine/Profiles/master/Clash/RuleSet/Extra/Game/Steam.yaml
+    interval: 86400
+
+  Global:
+    type: http
+    behavior: classical
+    path: ./RuleSet/Global.yaml
+    url: https://ghproxy.com/https://raw.githubusercontent.com/DivineEngine/Profiles/master/Clash/RuleSet/Global.yaml
+    interval: 86400
+
+  China:
+    type: http
+    behavior: classical
+    path: ./RuleSet/China.yaml
+    url: https://ghproxy.com/https://raw.githubusercontent.com/DivineEngine/Profiles/master/Clash/RuleSet/China.yaml
+    interval: 86400
+
+  ChinaIP:
+    type: http
+    behavior: ipcidr
+    path: ./RuleSet/Extra/ChinaIP.yaml
+    url: https://ghproxy.com/https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/cncidr.txt
     interval: 86400
 
 `;
