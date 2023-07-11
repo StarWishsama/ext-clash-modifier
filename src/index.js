@@ -26,7 +26,7 @@ export default {
 
     let resp = await fetch(configUrl, {
       headers: {
-        "User-Agent": "ClashForAndroid/3.0.3.premium" // Some proxy provider response config by judging user-agent
+        "User-Agent": "ClashForAndroid/3.0.3.premium" // Some proxy provider respond config by judging user-agent
       }
     });
     let rawConfig = await resp.text();
