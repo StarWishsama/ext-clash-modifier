@@ -24,7 +24,11 @@ export default {
 
     let configUrl = Base64.decode(pathname.slice(3));
 
-    let resp = await fetch(configUrl);
+    let resp = await fetch(configUrl, {
+      headers: {
+        "User-Agent": "ClashForAndroid/3.0.3.premium" // Some proxy provider response config by judging user-agent
+      }
+    });
     let rawConfig = await resp.text();
     let configObj = yaml.load(rawConfig);
 
