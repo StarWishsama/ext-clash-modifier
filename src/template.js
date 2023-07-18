@@ -38,6 +38,20 @@ proxy-groups:
     proxies: [DIRECT, '🏠 大陆流量']             
 
 rules:  
+  # bypass BakaXL  
+  - PROCESS-NAME,BakaXL.exe,DIRECT
+  # bypass Torrent
+  - PROCESS-NAME,qbittorrent.exe,DIRECT
+  
+  # Disable MIUI anti fraud upload
+  - DOMAIN,flash.sec.miui.com,REJECT
+  - DOMAIN,clash.razord.top,DIRECT
+  - DOMAIN,yacd.haishan.me,DIRECT
+  # Force Proxy Bing Chat
+  - DOMAIN-SUFFIX,bing.com,GLOBAL
+  # Force proxy gstatic
+  - DOMAIN-SUFFIX,gstatic.com,GLOBAL
+  
   # Local Area Network
   - IP-CIDR,192.168.0.0/16,DIRECT
   - IP-CIDR,10.0.0.0/8,DIRECT
@@ -69,18 +83,6 @@ rules:
   - RULE-SET,China,🏠 大陆网站
   - RULE-SET,ChinaIP,🏠 大陆流量
   - MATCH,🚥 其他流量
-  
-  # bypass BakaXL  
-  - PROCESS-NAME,BakaXL_Public_Ver_3.1.1.1.exe,DIRECT
-  # bypass Torrent
-  - PROCESS-NAME,qbittorrent.exe,DIRECT
-  
-  # Disable MIUI anti fraud upload
-  - DOMAIN,flash.sec.miui.com,REJECT
-  - DOMAIN,clash.razord.top,DIRECT
-  - DOMAIN,yacd.haishan.me,DIRECT
-  # Force Proxy Bing Chat
-  - DOMAIN-SUFFIX,bing.com,GLOBAL
 
 rule-providers:
   Unbreak:
