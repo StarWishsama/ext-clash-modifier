@@ -58,8 +58,7 @@ export default {
 
       let i = groupElem["proxies"].indexOf("_PROXY_NAME");
       if (i !== -1) {
-        groupElem["proxies"].splice(index, 1, ...proxyName);
-        groupElem["proxies"].splice(-1); // weird bug
+        groupElem["proxies"].splice(i, 1, ...proxyName);
       }
     });
 
