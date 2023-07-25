@@ -20,10 +20,13 @@ proxy-groups:
     proxies: ['🌐 国外流量', DIRECT]
   - name: '🎬 大陆流媒体国际版'
     type: select
-    proxies: [DIRECT, '🌐 国外流量']
+    proxies: [DIRECT, _PROXY_NAME]
   - name: '🎮 Steam'
     type: select
-    proxies: [DIRECT, '🌐 国外流量']  
+    proxies: [DIRECT, _PROXY_NAME]  
+  - name: '🎵 世界计划'
+    type: select   
+    proxies: [DIRECT, _PROXY_NAME]
   - name: '🌐 国际网站'
     type: select  
     proxies: ['🌐 国外流量', DIRECT]  
@@ -140,6 +143,13 @@ rule-providers:
     path: ./RuleSet/Extra/ChinaIP.yaml
     url: https://ghproxy.com/https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/cncidr.txt
     interval: 86400
+    
+  PJSK:
+    type: http
+    behavior: classical
+    path: ./RuleSet/Extra/Game/pjsk.yaml
+    url: https://ghproxy.com/https://raw.githubusercontent.com/StarWishsama/ext-clash-modifier/main/rules/pjsk.yaml
+    interval: 86400 
 
 `;
 
