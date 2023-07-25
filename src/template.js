@@ -75,6 +75,9 @@ rules:
 
   # (Steam)
   - RULE-SET,Steam,🎮 Steam
+  
+  # (Project Sekai)
+  - RULE-SET,PJSK,🎵 世界计划
 
   # (DNS Cache Pollution) / (IP Blackhole) / (Region-Restricted Access Denied) / (Network Jitter)
   - RULE-SET,Global,🌐 国际网站
