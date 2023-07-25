@@ -23,10 +23,10 @@ proxy-groups:
     proxies: [DIRECT, _PROXY_NAME]
   - name: '🎮 Steam'
     type: select
-    proxies: [DIRECT, _PROXY_NAME]  
+    proxies: [DIRECT, '🌐 国外流量', _PROXY_NAME]  
   - name: '🎵 世界计划'
     type: select   
-    proxies: [DIRECT, _PROXY_NAME]
+    proxies: [DIRECT, '🌐 国外流量', _PROXY_NAME]
   - name: '🌐 国际网站'
     type: select  
     proxies: ['🌐 国外流量', DIRECT]  
