@@ -27,6 +27,9 @@ proxy-groups:
   - name: '🎵 世界计划'
     type: select   
     proxies: [DIRECT, '🌐 国外流量', _PROXY_NAME]
+  - name: '🔍 必应'
+    type: select
+    proxies: ['🌐 国外流量', DIRECT, _PROXY_NAME]
   - name: '🌐 国际网站'
     type: select  
     proxies: ['🌐 国外流量', DIRECT]  
@@ -41,17 +44,17 @@ proxy-groups:
     proxies: [DIRECT, '🏠 大陆流量']             
 
 rules:  
+  # Disable MIUI anti fraud upload
+  - DOMAIN,flash.sec.miui.com,REJECT
+  
   # bypass BakaXL  
   - PROCESS-NAME,BakaXL.exe,DIRECT
   # bypass Torrent
   - PROCESS-NAME,qbittorrent.exe,DIRECT
   
-  # Disable MIUI anti fraud upload
-  - DOMAIN,flash.sec.miui.com,REJECT
   - DOMAIN,clash.razord.top,DIRECT
   - DOMAIN,yacd.haishan.me,DIRECT
-  # Force Proxy Bing Chat
-  - DOMAIN-SUFFIX,bing.com,GLOBAL
+  
   # Force proxy gstatic
   - DOMAIN-SUFFIX,gstatic.com,GLOBAL
   
@@ -78,6 +81,9 @@ rules:
   
   # (Project Sekai)
   - RULE-SET,PJSK,🎵 世界计划
+  
+  # Bing
+  - RULE-SET,Bing,🔍 必应
 
   # (DNS Cache Pollution) / (IP Blackhole) / (Region-Restricted Access Denied) / (Network Jitter)
   - RULE-SET,Global,🌐 国际网站
@@ -130,7 +136,7 @@ rule-providers:
     type: http
     behavior: classical
     path: ./RuleSet/Global.yaml
-    url: https://ghproxy.com/https://raw.githubusercontent.com/DivineEngine/Profiles/master/Clash/RuleSet/Global.yaml
+    url: https://ghproxy.com/https://raw.githubusercontent.com/StarWishsama/ext-clash-modifier/main/rulesets/Global.yaml
     interval: 86400
 
   China:
@@ -151,8 +157,15 @@ rule-providers:
     type: http
     behavior: classical
     path: ./RuleSet/Extra/Game/pjsk.yaml
-    url: https://ghproxy.com/https://raw.githubusercontent.com/StarWishsama/ext-clash-modifier/main/rules/pjsk.yaml
+    url: https://ghproxy.com/https://raw.githubusercontent.com/StarWishsama/ext-clash-modifier/main/rulesets/pjsk.yaml
     interval: 86400 
+    
+  Bing:
+    type: http
+    behavior: classical
+    path: ./RuleSet/Extra/Bing.yaml
+    url: https://ghproxy.com/https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Microsoft.list
+    interval: 86400  
 
 `;
 
