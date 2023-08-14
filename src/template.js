@@ -30,6 +30,9 @@ proxy-groups:
   - name: '💻 微软服务'
     type: select
     proxies: ['🌐 国外流量', DIRECT, _PROXY_NAME]
+  - name: '🔔 Google FCM'  
+    type: select
+    proxies: ['🌐 国外流量', DIRECT]
   - name: '🌐 国际网站'
     type: select  
     proxies: ['🌐 国外流量', DIRECT]  
@@ -82,8 +85,11 @@ rules:
   # (Project Sekai)
   - RULE-SET,PJSK,🎵 世界计划
   
-  # Bing
+  # Microsoft service
   - RULE-SET,Microsoft,💻 微软服务
+  
+  # Google FCM
+  - RULE-SET,FCM,🔔 Google FCM
 
   # (DNS Cache Pollution) / (IP Blackhole) / (Region-Restricted Access Denied) / (Network Jitter)
   - RULE-SET,Global,🌐 国际网站
@@ -97,11 +103,12 @@ rules:
   - MATCH,🚥 其他流量
 
 rule-providers:
-  Unbreak:
+  FCM:
     type: http
     behavior: classical
-    path: ./RuleSet/Unbreak.yaml
-    url: https://ghproxy.com/https://raw.githubusercontent.com/DivineEngine/Profiles/master/Clash/RuleSet/Unbreak.yaml
+    path: ./RuleSet/Extra/FCM.list
+    format: text
+    urL: https://ghproxy.com/https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/GoogleFCM.list
     interval: 86400
 
   Streaming:
