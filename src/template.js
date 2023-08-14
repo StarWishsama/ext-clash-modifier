@@ -27,7 +27,7 @@ proxy-groups:
   - name: '🎵 世界计划'
     type: select   
     proxies: [DIRECT, '🌐 国外流量', _PROXY_NAME]
-  - name: '🔍 必应'
+  - name: '💻 微软服务'
     type: select
     proxies: ['🌐 国外流量', DIRECT, _PROXY_NAME]
   - name: '🌐 国际网站'
@@ -83,7 +83,7 @@ rules:
   - RULE-SET,PJSK,🎵 世界计划
   
   # Bing
-  - RULE-SET,Bing,🔍 必应
+  - RULE-SET,Microsoft,💻 微软服务
 
   # (DNS Cache Pollution) / (IP Blackhole) / (Region-Restricted Access Denied) / (Network Jitter)
   - RULE-SET,Global,🌐 国际网站
@@ -160,10 +160,11 @@ rule-providers:
     url: https://ghproxy.com/https://raw.githubusercontent.com/StarWishsama/ext-clash-modifier/main/rulesets/pjsk.yaml
     interval: 86400 
     
-  Bing:
+  Microsoft:
     type: http
     behavior: classical
-    path: ./RuleSet/Extra/Bing.txt
+    path: ./RuleSet/Extra/Microsoft.list
+    format: text
     url: https://ghproxy.com/https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Microsoft.list
     interval: 86400  
 
