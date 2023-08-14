@@ -163,7 +163,7 @@ rule-providers:
   Bing:
     type: http
     behavior: classical
-    path: ./RuleSet/Extra/Bing.yaml
+    path: ./RuleSet/Extra/Bing.txt
     url: https://ghproxy.com/https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Microsoft.list
     interval: 86400  
 
