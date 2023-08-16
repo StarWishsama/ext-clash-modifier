@@ -31,8 +31,6 @@ export default {
     });
     let rawConfig = await resp.text();
 
-    console.log("Got raw config: " + rawConfig)
-
     let configObj = yaml.load(rawConfig);
 
     // remove

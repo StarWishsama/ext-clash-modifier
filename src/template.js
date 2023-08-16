@@ -108,7 +108,7 @@ rule-providers:
     behavior: classical
     path: ./RuleSet/Extra/FCM.list
     format: text
-    urL: https://ghproxy.com/https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/GoogleFCM.list
+    url: https://ghproxy.com/https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/GoogleFCM.list
     interval: 86400
 
   Streaming:
@@ -173,8 +173,7 @@ rule-providers:
     path: ./RuleSet/Extra/Microsoft.list
     format: text
     url: https://ghproxy.com/https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Microsoft.list
-    interval: 86400  
-
+    interval: 86400
 `;
 
 export default { remove, append };
