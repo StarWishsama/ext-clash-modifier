@@ -70,9 +70,6 @@ rules:
   - IP-CIDR,224.0.0.0/4,DIRECT
   - IP-CIDR,fe80::/10,DIRECT
   
-  # Unbreak
-  - RULE-SET,Unbreak,DIRECT
-  
   # (Streaming Media)
   - RULE-SET,Streaming,🎬 国际流媒体
 
