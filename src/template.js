@@ -146,8 +146,9 @@ rule-providers:
   China:
     type: http
     behavior: classical
-    path: ./RuleSet/China.yaml
-    url: https://ghproxy.com/https://raw.githubusercontent.com/DivineEngine/Profiles/master/Clash/RuleSet/China.yaml
+    format: text
+    path: ./RuleSet/ChinaDomain.list
+    url: https://ghproxy.com/https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ChinaDomain.list
     interval: 86400
 
   ChinaIP:
@@ -170,7 +171,7 @@ rule-providers:
     path: ./RuleSet/Extra/Microsoft.list
     format: text
     url: https://ghproxy.com/https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Microsoft.list
-    interval: 86400
+    interval: 86400 
 `;
 
 export default { remove, append };
