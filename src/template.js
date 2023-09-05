@@ -50,16 +50,8 @@ rules:
   # Disable MIUI anti fraud upload
   - DOMAIN,flash.sec.miui.com,REJECT
   
-  # bypass BakaXL  
-  - PROCESS-NAME,BakaXL.exe,DIRECT
-  # bypass Torrent
-  - PROCESS-NAME,qbittorrent.exe,DIRECT
-  
   - DOMAIN,clash.razord.top,DIRECT
   - DOMAIN,yacd.haishan.me,DIRECT
-  
-  # Force proxy gstatic
-  - DOMAIN-SUFFIX,gstatic.com,GLOBAL
   
   # Local Area Network
   - IP-CIDR,192.168.0.0/16,DIRECT
@@ -146,9 +138,8 @@ rule-providers:
   China:
     type: http
     behavior: classical
-    format: text
-    path: ./RuleSet/ChinaDomain.list
-    url: https://ghproxy.com/https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ChinaDomain.list
+    path: ./RuleSet/China.yaml
+    url: https://ghproxy.com/https://raw.githubusercontent.com/DivineEngine/Profiles/master/Clash/RuleSet/China.yaml
     interval: 86400
 
   ChinaIP:
