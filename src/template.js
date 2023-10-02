@@ -145,8 +145,9 @@ rule-providers:
   ChinaIP:
     type: http
     behavior: ipcidr
-    path: ./RuleSet/Extra/ChinaIP.yaml
-    url: https://ghproxy.com/https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/cncidr.txt
+    path: ./RuleSet/Extra/ChinaIP.txt
+    format: text
+    url: https://ghproxy.com/https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ChinaIp.list
     interval: 86400
     
   PJSK:
