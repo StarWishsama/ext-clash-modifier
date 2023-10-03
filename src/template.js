@@ -144,7 +144,7 @@ rule-providers:
 
   ChinaIP:
     type: http
-    behavior: ipcidr
+    behavior: classical
     path: ./RuleSet/Extra/ChinaIP.txt
     format: text
     url: https://ghproxy.com/https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ChinaIp.list
