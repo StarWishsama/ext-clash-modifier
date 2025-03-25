@@ -10,6 +10,7 @@
     "deploy": "wrangler publish"
   },
   "dependencies": {
+    "ext-clash-modifier": "file:",
     "js-base64": "^3.7.2",
     "js-yaml": "^4.1.0"
   }
