@@ -1,5 +1,7 @@
 # External Clash Modifier
 
+规则来源: [自用 Clash Mixin 配置](https://gist.github.com/StarWishsama/b70f0d327c8d52813aa38f24a9be98af)
+
 [Related Post](https://pooi.me/external-clash-modifier/)
 
 一个简陋的外置 Clash 配置文件修改器，用于在不支持 Parser 的 GUI （如 Clash For Android）上实现机场自带策略的覆写，同时附带 Rule Provider 反向代理服务。
@@ -36,14 +38,3 @@ wrangler publish
 ```
 https://<your-domain>/m/<base64-config-url>
 ```
-
-## 注意事项
-
-`workers.dev` 已被墙，请使用自有域名。
-
-## Forks
-
-如果对规则有更多需求，不妨看看下面的这些 Forks
-
-- [按区域自动选择节点](https://github.com/wddxg/ext-clash-modifier) by wddxg
-- 欢迎提交 ヾ(^▽^*)))
